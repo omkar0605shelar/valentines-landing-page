@@ -4,10 +4,11 @@
 // Requirements: product image, name, original price, sale price, discount badge, Add to Cart button
 // Data from Shopify Storefront API
 
+import { useState } from "react";
 import { ProductCardData } from "@/types/product";
 import { Mode } from "@/types/product";
 import { cn } from "@/lib/utils";
-import { ShoppingCart, Heart } from "lucide-react";
+import { ShoppingCart, Heart, Check } from "lucide-react";
 import Image from "next/image";
 
 interface ProductCardProps {
@@ -24,11 +25,19 @@ interface ProductCardProps {
  * - Sale price (current price)
  * - Original price (compare at price, strikethrough)
  * - Discount badge (calculated percentage)
- * - Add to Cart button
+ * - Add to Cart button (with click feedback)
  * - Wishlist button (hover)
  */
 export function ProductCard({ product, mode }: ProductCardProps) {
   const discount = product.discount;
+  const [added, setAdded] = useState(false);
+
+  // Handle Add to Cart click
+  const handleAddToCart = () => {
+    setAdded(true);
+    // Reset after 2 seconds
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   return (
     <div
@@ -120,16 +129,30 @@ export function ProductCard({ product, mode }: ProductCardProps) {
 
         {/* Add to Cart Button */}
         <button
+          onClick={handleAddToCart}
           className={cn(
-            "mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 font-semibold transition-all duration-300 active:scale-95",
+            "mt-4 flex w-full items-center justify-center gap-2 rounded-xl py-3 font-semibold transition-all duration-300 active:scale-95 cursor-pointer",
             mode === "couple"
-              ? "bg-gray-900 text-white hover:bg-red-600"
-              : "bg-gray-700 text-white hover:bg-purple-600"
+              ? added
+                ? "bg-green-600 text-white"
+                : "bg-gray-900 text-white hover:bg-red-600"
+              : added
+                ? "bg-green-600 text-white"
+                : "bg-gray-700 text-white hover:bg-purple-600"
           )}
           aria-label={`Add ${product.title} to cart`}
         >
-          <ShoppingCart className="h-4 w-4" />
-          <span>Add to Cart</span>
+          {added ? (
+            <>
+              <Check className="h-4 w-4" />
+              <span>Added!</span>
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="h-4 w-4" />
+              <span>Add to Cart</span>
+            </>
+          )}
         </button>
       </div>
     </div>

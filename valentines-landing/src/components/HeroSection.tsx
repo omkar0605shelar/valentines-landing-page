@@ -6,6 +6,7 @@
 
 import { Mode } from "@/types/product";
 import { ModeToggle } from "./ModeToggle";
+import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 import { Heart, Sparkles, ArrowRight } from "lucide-react";
 
@@ -37,6 +38,14 @@ const SINGLE_VIDEO_URL = "https://cdn.shopify.com/videos/c/o/v/452bedba47694a96a
  * - Video crossfade effect
  */
 export function HeroSection({ mode, onModeChange }: HeroSectionProps) {
+  // Scroll to products section
+  const scrollToProducts = () => {
+    const element = document.getElementById("products-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       className={cn(
@@ -66,8 +75,9 @@ export function HeroSection({ mode, onModeChange }: HeroSectionProps) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Mode Toggle Header */}
-        <div className="mb-12 flex justify-center">
+        {/* Logo and Mode Toggle Header */}
+        <div className="mb-12 flex flex-col items-center gap-6">
+          <Logo mode={mode} size="lg" />
           <ModeToggle mode={mode} onModeChange={onModeChange} />
         </div>
 
@@ -137,8 +147,9 @@ export function HeroSection({ mode, onModeChange }: HeroSectionProps) {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <button
+                onClick={scrollToProducts}
                 className={cn(
-                  "group flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300",
+                  "group flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 cursor-pointer",
                   mode === "couple"
                     ? "bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/30 hover:scale-105"
                     : "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105"
@@ -148,8 +159,9 @@ export function HeroSection({ mode, onModeChange }: HeroSectionProps) {
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
               <button
+                onClick={scrollToProducts}
                 className={cn(
-                  "rounded-full px-8 py-4 font-semibold transition-all duration-300 border-2",
+                  "rounded-full px-8 py-4 font-semibold transition-all duration-300 border-2 cursor-pointer",
                   mode === "couple"
                     ? "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
                     : "border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500"

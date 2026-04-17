@@ -13,9 +13,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Valentine's Day Gift Shop | Comfort Valley",
-  description: "Find the perfect Valentine's gifts for your loved ones or treat yourself. Shop our curated collection of comfort essentials.",
-  keywords: ["Valentine's Day", "Gift Shop", "Comfort Valley", "Couple Gifts", "Self Care"],
+  title: {
+    default: "ComfortValley | Valentine's Gift Shop",
+    template: "%s | ComfortValley",
+  },
+  description: "Find the perfect Valentine's gifts for your loved ones or treat yourself. Shop our curated collection of comfort essentials with Couple & Single modes.",
+  keywords: ["Valentine's Day", "Gift Shop", "ComfortValley", "Couple Gifts", "Self Care", "Comfort Gifts"],
+  authors: [{ name: "ComfortValley" }],
+  creator: "ComfortValley",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://comfortvalley.com",
+    title: "ComfortValley | Valentine's Gift Shop",
+    description: "Gift Comfort to your loved ones or Be Your Own Bae. Shop comfort essentials for Valentine's Day.",
+    siteName: "ComfortValley",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ComfortValley | Valentine's Gift Shop",
+    description: "Gift Comfort or Be Your Own Bae. Shop comfort essentials.",
+  },
 };
 
 export default function RootLayout({

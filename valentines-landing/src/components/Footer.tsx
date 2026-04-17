@@ -3,8 +3,8 @@
 // Assignment 2: Footer Component
 
 import { Mode } from "@/types/product";
+import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
-import { Heart } from "lucide-react";
 
 interface FooterProps {
   mode: Mode;
@@ -31,16 +31,8 @@ export function Footer({ mode }: FooterProps) {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          {/* Brand */}
-          <div className="flex items-center gap-2">
-            <Heart
-              className={cn(
-                "h-6 w-6",
-                mode === "couple" ? "text-red-500 fill-current" : "text-purple-500"
-              )}
-            />
-            <span className="text-xl font-bold">ComfortValley</span>
-          </div>
+          {/* Brand Logo */}
+          <Logo mode={mode} size="md" />
 
           {/* Links */}
           <div className="flex gap-8">

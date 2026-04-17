@@ -56,6 +56,7 @@ export function ProductGrid({ mode, categories }: ProductGridProps) {
 
   return (
     <section
+      id="products-section"
       className={cn(
         "py-20 transition-all duration-700",
         mode === "couple" ? "bg-white" : "bg-gray-900"
